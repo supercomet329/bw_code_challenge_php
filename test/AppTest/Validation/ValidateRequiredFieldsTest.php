@@ -7,16 +7,16 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class ValidateEmailRequestBodyTest extends TestCase
+class ValidateRequiredFieldsTest extends TestCase
 {
     /**
-     * @var ValidateEmailRequestBody
+     * @var ValidateRequiredFields
      */
     private $testSubject;
 
     public function setUp()
     {
-        $this->testSubject = new ValidateEmailRequestBody();
+        $this->testSubject = new ValidateRequiredFields();
     }
 
     /**

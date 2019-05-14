@@ -14,7 +14,7 @@ use Zend\Diactoros\Response\JsonResponse;
  * Class ValidateEmailRequestBody
  * @package App\Validation
  */
-class ValidateEmailRequestBody implements MiddlewareInterface
+class ValidateRequiredFields implements MiddlewareInterface
 {
     /**
      * Process an incoming server request.

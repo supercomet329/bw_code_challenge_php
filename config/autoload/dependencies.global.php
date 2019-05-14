@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Pipelines\SendEmailPipeline;
 use App\Pipelines\ValidateEmailPipeline;
 use App\Validation\ValidateBody;
-use App\Validation\ValidateEmailRequestBody;
+use App\Validation\ValidateRequiredFields;
 
 return [
     // Provides application-wide services.
@@ -22,8 +22,8 @@ return [
         // class name.
         'invokables' => [
             // Fully\Qualified\InterfaceName::class => Fully\Qualified\ClassName::class,
-            ValidateBody::class => ValidateBody::class,
-            ValidateEmailRequestBody::class => ValidateEmailRequestBody::class,
+            ValidateBody::class           => ValidateBody::class,
+            ValidateRequiredFields::class => ValidateRequiredFields::class,
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories'  => [
