@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Pipelines\SendEmailPipeline;
+use App\Validation\ValidateBody;
 
 return [
     // Provides application-wide services.
@@ -19,6 +20,7 @@ return [
         // class name.
         'invokables' => [
             // Fully\Qualified\InterfaceName::class => Fully\Qualified\ClassName::class,
+            ValidateBody::class => ValidateBody::class,
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories'  => [

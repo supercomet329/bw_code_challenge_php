@@ -2,7 +2,7 @@
 
 namespace App\Pipelines;
 
-use App\Handler\PingHandler;
+use App\Validation\ValidateBody;
 use Psr\Container\ContainerInterface;
 use Zend\Expressive\MiddlewareFactory;
 use Zend\Stratigility\MiddlewarePipe;
@@ -13,6 +13,7 @@ class SendEmailPipeline
     {
         $factory  = $container->get(MiddlewareFactory::class);
         $pipeline = new MiddlewarePipe();
+        $pipeline->pipe($factory->prepare($container->get(ValidateBody::class)));
 //        $pipeline->pipe($factory->prepare($container->get(TODO::class)));
 
         return $pipeline;
