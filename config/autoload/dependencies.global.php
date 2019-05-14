@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Pipelines\SendEmailPipeline;
+use App\Pipelines\ValidateEmailPipeline;
 use App\Validation\ValidateBody;
 use App\Validation\ValidateEmailRequestBody;
 
@@ -27,6 +28,7 @@ return [
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories'  => [
             SendEmailPipeline::class => SendEmailPipeline::class,
+            ValidateEmailPipeline::class => ValidateEmailPipeline::class
             // Fully\Qualified\ClassName::class => Fully\Qualified\FactoryName::class,
         ],
     ],
