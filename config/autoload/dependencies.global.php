@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Pipelines\SendEmailPipeline;
 use App\Pipelines\ValidateEmailPipeline;
 use App\Validation\Email\ValidateAllFieldValuesAreStrings;
+use App\Validation\Email\ValidateEmailFields;
 use App\Validation\ValidateBody;
 use App\Validation\ValidateRequiredFields;
 
@@ -26,6 +27,7 @@ return [
             ValidateBody::class                     => ValidateBody::class,
             ValidateRequiredFields::class           => ValidateRequiredFields::class,
             ValidateAllFieldValuesAreStrings::class => ValidateAllFieldValuesAreStrings::class,
+            ValidateEmailFields::class              => ValidateEmailFields::class,
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories'  => [
