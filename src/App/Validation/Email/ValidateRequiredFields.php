@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Validation;
+namespace App\Validation\Email;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

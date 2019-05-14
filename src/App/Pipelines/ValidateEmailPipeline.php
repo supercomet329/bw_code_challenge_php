@@ -4,7 +4,7 @@ namespace App\Pipelines;
 
 use App\Validation\Email\ValidateAllFieldValuesAreStrings;
 use App\Validation\Email\ValidateEmailFields;
-use App\Validation\ValidateRequiredFields;
+use App\Validation\Email\ValidateRequiredFields;
 use Psr\Container\ContainerInterface;
 use Zend\Expressive\MiddlewareFactory;
 use Zend\Stratigility\MiddlewarePipe;

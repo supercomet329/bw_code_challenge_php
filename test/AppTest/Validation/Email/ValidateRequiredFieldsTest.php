@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Validation;
+namespace App\Validation\Email;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;

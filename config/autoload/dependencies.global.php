@@ -6,8 +6,8 @@ use App\Pipelines\SendEmailPipeline;
 use App\Pipelines\ValidateEmailPipeline;
 use App\Validation\Email\ValidateAllFieldValuesAreStrings;
 use App\Validation\Email\ValidateEmailFields;
+use App\Validation\Email\ValidateRequiredFields;
 use App\Validation\ValidateBody;
-use App\Validation\ValidateRequiredFields;
 
 return [
     // Provides application-wide services.
