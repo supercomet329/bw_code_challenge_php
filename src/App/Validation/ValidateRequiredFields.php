@@ -37,6 +37,6 @@ class ValidateRequiredFields implements MiddlewareInterface
         }
         $missingFields = implode(', ', $diff);
 
-        return new JsonResponse("$missingFields are required fields", 422);
+        return new JsonResponse("$missingFields is required", 422);
     }
 }
