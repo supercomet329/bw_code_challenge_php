@@ -2,8 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Middleware\Email\SendEmail;
+use App\Middleware\Email\SendEmailFactory;
 use App\Pipelines\SendEmailPipeline;
 use App\Pipelines\ValidateEmailPipeline;
+use App\Services\EmailService;
+use App\Services\EmailServiceFactory;
 use App\Validation\Email\ValidateAllFieldValuesAreStrings;
 use App\Validation\Email\ValidateEmailFields;
 use App\Validation\Email\ValidateRequiredFields;
@@ -32,7 +36,9 @@ return [
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories'  => [
             SendEmailPipeline::class     => SendEmailPipeline::class,
-            ValidateEmailPipeline::class => ValidateEmailPipeline::class
+            ValidateEmailPipeline::class => ValidateEmailPipeline::class,
+            SendEmail::class             => SendEmailFactory::class,
+            EmailService::class          => EmailServiceFactory::class,
             // Fully\Qualified\ClassName::class => Fully\Qualified\FactoryName::class,
         ],
     ],
