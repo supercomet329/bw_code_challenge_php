@@ -3,12 +3,12 @@
 namespace App\Models;
 
 /**
- * Data structure for a MailChimp email entity
+ * Data structure for a Mailgun email entity
  *
- * Class MailChimpEmail
+ * Class MailgunEmail
  * @package App\Models
  */
-class MailChimpEmail implements EmailInterface
+class MailgunEmail implements EmailInterface
 {
     /**
      * @var string
@@ -179,21 +179,25 @@ class MailChimpEmail implements EmailInterface
     public function getConfig(string $apiKey): array
     {
         return [
-            'json' => [
-                'key'     => $apiKey,
-                'message' => [
-                    'text'       => $this->getBody(),
-                    'subject'    => $this->getSubject(),
-                    'from_email' => $this->getFrom(),
-                    'from_name'  => $this->getFromName(),
-                    'to'         => [
-                        [
-                            'email' => $this->getTo(),
-                            'name'  => $this->getToName(),
-                        ],
-                    ],
+            'multipart' => [
+                [
+                    'name'     => 'from',
+                    'contents' => "{$this->getFromName()} <{$this->getFrom()}>",
+                ],
+                [
+                    'name'     => 'to',
+                    'contents' => "{$this->getToName()} <{$this->getTo()}>",
+                ],
+                [
+                    'name'     => 'subject',
+                    'contents' => $this->getSubject(),
+                ],
+                [
+                    'name'     => 'text',
+                    'contents' => $this->getBody(),
                 ],
             ],
+            'auth'      => ['api', $apiKey],
         ];
     }
 }
