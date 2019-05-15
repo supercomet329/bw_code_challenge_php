@@ -13,6 +13,7 @@ use App\Pipelines\SendEmailPipeline;
 use App\Pipelines\ValidateEmailPipeline;
 use App\Services\EmailService;
 use App\Services\EmailServiceFactory;
+use App\Transformers\Email\RemoveHTMLTags;
 use App\Validation\Email\ValidateAllFieldValuesAreStrings;
 use App\Validation\Email\ValidateEmailFields;
 use App\Validation\Email\ValidateRequiredFields;
@@ -38,6 +39,7 @@ return [
             ValidateRequiredFields::class           => ValidateRequiredFields::class,
             ValidateAllFieldValuesAreStrings::class => ValidateAllFieldValuesAreStrings::class,
             ValidateEmailFields::class              => ValidateEmailFields::class,
+            RemoveHTMLTags::class                   => RemoveHTMLTags::class,
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories'  => [
