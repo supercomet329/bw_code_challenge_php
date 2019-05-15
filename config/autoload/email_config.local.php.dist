@@ -1,0 +1,17 @@
+<?php
+
+return [
+    'email' => [
+        'current_provider' => 'mailchimp',
+        'providers' => [
+            'mailchimp' => [
+                'uri'     => 'https://mandrillapp.com/api/1.0/messages/send.json',
+                'api_key' => 'MAILCHIMP_API_KEY',
+            ],
+            'mailgun' => [
+                'uri'     => 'https://api.mailgun.net/v3/SENDING_DOMAIN/messages',
+                'api_key' => 'MAILGUN_API_KEY',
+            ],
+        ],
+    ],
+];
