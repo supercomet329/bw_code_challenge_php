@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\StreamInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 class SendEmailTest extends TestCase
@@ -40,7 +41,14 @@ class SendEmailTest extends TestCase
         $handler->handle($request)->willReturn($response);
         /** @var array $body */
         $request->getParsedBody()->shouldBeCalled()->willReturn(['body' => 'contents']);
-        $this->emailService->sendEmail(['body' => 'contents'])->shouldBeCalled();
+        /** @var ResponseInterface $apiResponse */
+        $apiResponse = $this->prophesize(ResponseInterface::class);
+        /** @var StreamInterface $stream */
+        $stream = $this->prophesize(StreamInterface::class);
+        $apiResponse->getBody()->willReturn($stream);
+        $stream->getContents()->willReturn('response from API');
+        $apiResponse->getStatusCode()->willReturn(200);
+        $this->emailService->sendEmail(['body' => 'contents'])->shouldBeCalled()->willReturn($apiResponse);
         $this->testSubject->process($request->reveal(), $handler->reveal());
     }
 }
