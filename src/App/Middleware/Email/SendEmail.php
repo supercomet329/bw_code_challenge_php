@@ -7,6 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Zend\Diactoros\Response\JsonResponse;
 
 /**
  * Middleware to send emails. Assumed body has been validated. (See ValidateEmailPipeline)
@@ -25,6 +26,7 @@ class SendEmail implements MiddlewareInterface
     {
         $this->emailService = $emailService;
     }
+
     /**
      * Process an incoming server request.
      *
@@ -39,8 +41,11 @@ class SendEmail implements MiddlewareInterface
         /** @var array $body */
         $body = $request->getParsedBody();
 
-        $this->emailService->sendEmail($body);
+        $response = $this->emailService->sendEmail($body);
 
-        return $handler->handle($request);
+        return new JsonResponse(
+            json_decode($response->getBody()->getContents(), true),
+            $response->getStatusCode()
+        );
     }
 }
