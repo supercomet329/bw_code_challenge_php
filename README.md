@@ -11,19 +11,20 @@ Brightwheel code challenge
 
 - ensure you have a way to run php 7+ (brew install php, or some other method)
 - ensure you have composer installed (https://getcomposer.org/download/)
-- run `composer install` to install the dependencies (defined in package.{json|lock})
+- run `composer install` to install the dependencies (defined in `package.{json|lock}`)
 
 # Setup
 - run `cp config/autoload/email_config.local.php.dist config/autoload/email_config.local.php`
 - Change values in email_config.local.php
-    - MAILCHIMP_API_KEY -> your mailchimp API key
-    - SENDING_DOMAIN -> your mailgun sending domain
-    - MAILGUN_API_KEY -> your mailgun API key
+    - `MAILCHIMP_API_KEY` -> your mailchimp API key
+    - `SENDING_DOMAIN` -> your mailgun sending domain
+    - `MAILGUN_API_KEY` -> your mailgun API key
     
 # Running the app
 - run `composer run serve --timeout=0`
 - Make a POST request to http://localhost:8080/email
   - Example request
+    ```  
     curl -X "POST" "http://localhost:8080/email" \
          -H 'Content-Type: application/json' \
          -d $'{
@@ -34,6 +35,7 @@ Brightwheel code challenge
       "from_name": "Brightwheel",
       "to_name": "Mr. Fake"
     }'
+    ```
 - To change the email provider, change the `current_provider` value to either `mailchimp` or `mailgun`    
 
 # Testing the app
