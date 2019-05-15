@@ -2,8 +2,13 @@
 
 declare(strict_types=1);
 
+use App\Adapters\EmailSender;
+use App\Adapters\EmailSenderFactory;
+use App\Adapters\EmailSenderInterface;
 use App\Middleware\Email\SendEmail;
 use App\Middleware\Email\SendEmailFactory;
+use App\Models\EmailInterface;
+use App\Models\EmailInterfaceFactory;
 use App\Pipelines\SendEmailPipeline;
 use App\Pipelines\ValidateEmailPipeline;
 use App\Services\EmailService;
@@ -21,6 +26,7 @@ return [
         // Use 'aliases' to alias a service name to another service. The
         // key is the alias name, the value is the service to which it points.
         'aliases'    => [
+            EmailSenderInterface::class => EmailSender::class
             // Fully\Qualified\ClassOrInterfaceName::class => Fully\Qualified\ClassName::class,
         ],
         // Use 'invokables' for constructor-less services, or services that do
@@ -39,6 +45,9 @@ return [
             ValidateEmailPipeline::class => ValidateEmailPipeline::class,
             SendEmail::class             => SendEmailFactory::class,
             EmailService::class          => EmailServiceFactory::class,
+            EmailSender::class           => EmailSenderFactory::class,
+            EmailSenderInterface::class  => EmailSender::class,
+            EmailInterface::class        => EmailInterfaceFactory::class,
             // Fully\Qualified\ClassName::class => Fully\Qualified\FactoryName::class,
         ],
     ],
